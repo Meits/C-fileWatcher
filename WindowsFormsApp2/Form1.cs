@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,6 +16,8 @@ namespace WindowsFormsApp2
     {
         string path = null;
         string pathSource = null;
+
+        bool taskOpen = false;
 
         string pathFile = "log-" + DateTime.Now.ToShortDateString() + ".txt";
         int countCopy = 2;
@@ -31,38 +34,63 @@ namespace WindowsFormsApp2
             FileSystemWatcher fs = new FileSystemWatcher();
             fs.Path = this.path;
             fs.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.DirectoryName;
-
             //fs.Filter = "*.pdf";
-
             fs.Changed += new FileSystemEventHandler(onChange);
             fs.Created += new FileSystemEventHandler(onChange);
             fs.Deleted += new FileSystemEventHandler(onChange);
             fs.Renamed += new RenamedEventHandler(onChange);
-
-            fs.WaitForChanged(WatcherChangeTypes.All, 10000);
-
             fs.EnableRaisingEvents = true;
 
+            // устанавливаем метод обратного вызова
+            TimerCallback tm = new TimerCallback(Count);
+            // создаем таймер
+            System.Threading.Timer timer = new System.Threading.Timer(tm, null, 0, 500);
+
+            //fs.WaitForChanged(WatcherChangeTypes.All, 10000);
+
+            //FileSystemWatcher fs2 = new FileSystemWatcher();
+            //fs2.Path = this.pathSource;
+            //fs2.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.DirectoryName;
+            ////fs.Filter = "*.pdf";
+            //fs2.Changed += new FileSystemEventHandler(onChange);
+            //fs2.Created += new FileSystemEventHandler(onChange);
+            //fs2.Deleted += new FileSystemEventHandler(onChange);
+            //fs2.Renamed += new RenamedEventHandler(onChange);
+            //fs2.WaitForChanged(WatcherChangeTypes.All, 10000);
+            //fs2.EnableRaisingEvents = true;
+
+        }
+
+        private void Count(object state)
+        {
+            if (isDirectoryEmpty() && !isDirectorySourceEmpty() && !taskOpen )
+            {
+                taskOpen = true;
+                setTimer();
+            }
         }
 
         private void onChange(object sender, FileSystemEventArgs e)
         {
-            richTextBox1.Text += "File: " + e.FullPath + " " + e.ChangeType + "\n\r";
+            //FileSystemWatcher f = sender as FileSystemWatcher;
+            //MessageBox.Show(f.Path);
+            richTextBox1.Text += DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + " --File: " + e.FullPath + " " + e.ChangeType + "\n\r";
             richTextBox1.SaveFile(this.pathFile, RichTextBoxStreamType.PlainText);
 
-            if (isDirectoryEmpty())
-            {
-                setTimer(richTextBox1.Text);
-            }
+            //if (isDirectoryEmpty())
+            //{
+            //    setTimer();
+            //}
         }
 
-        private async void setTimer( string text)
+        private async void setTimer()
         {
             await Task.Delay(5000);
-            fileMove(text);
+            fileMove();
+            taskOpen = false;
         }
 
-        private void fileMove(string text)
+        private void fileMove()
         {
             DirectoryInfo dir = new DirectoryInfo(this.pathSource);
             FileInfo[] files = dir.GetFiles();
@@ -82,7 +110,6 @@ namespace WindowsFormsApp2
                 k++;
             }
 
-            //File f = new File(this.pathFile);
         }
 
         private bool isDirectoryEmpty()
@@ -90,11 +117,21 @@ namespace WindowsFormsApp2
             return !Directory.EnumerateFileSystemEntries(this.path).Any();
         }
 
+        private bool isDirectorySourceEmpty()
+        {
+            return !Directory.EnumerateFileSystemEntries(this.pathSource).Any();
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             this.path = textBox2.Text;
             this.pathSource = textBox3.Text;
             RunWatch();
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
