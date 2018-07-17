@@ -18,4 +18,3 @@ C:\desctop\C-fileWatcher\FileWatcher\obj\Debug\FileWatcher.csproj.GenerateResour
 C:\desctop\C-fileWatcher\FileWatcher\obj\Debug\FileWatcher.csproj.CoreCompileInputs.cache
 C:\desctop\C-fileWatcher\FileWatcher\obj\Debug\WindowsFormsApp2.exe
 C:\desctop\C-fileWatcher\FileWatcher\obj\Debug\WindowsFormsApp2.pdb
-C:\desctop\C-fileWatcher\FileWatcher\obj\Debug\FileWatcher.csprojAssemblyReference.cache

@@ -219,9 +219,9 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(4, 131);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(104, 13);
+            this.label7.Size = new System.Drawing.Size(88, 13);
             this.label7.TabIndex = 12;
-            this.label7.Text = "Delay in milliseconds";
+            this.label7.Text = "Delay in seconds";
             // 
             // Form1
             // 
