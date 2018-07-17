@@ -46,6 +46,7 @@ namespace FileWatcher
             textBox3.Text = this.pathInbox;
             textBox1.Text = this.countCopy.ToString();
             textBox4.Text = this.pathLog;
+            textBox5.Text = this.delayCopy.ToString();
 
             this.fullPath = this.pathLog + "/" + this.logFileName;
             this.fullPathInbox = this.pathLog + "/" + this.logFileNameInbox;
@@ -123,23 +124,8 @@ namespace FileWatcher
             {
                 this.timer.Change(Timeout.Infinite, Timeout.Infinite);
             }
-            // устанавливаем метод обратного вызова
             TimerCallback tm = new TimerCallback(Count);
-            // создаем таймер
             this.timer = new System.Threading.Timer(tm, null, 0, 500);
-
-            //fs.WaitForChanged(WatcherChangeTypes.All, 10000);
-
-            //FileSystemWatcher fs2 = new FileSystemWatcher();
-            //fs2.Path = this.pathSource;
-            //fs2.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.DirectoryName;
-            ////fs.Filter = "*.pdf";
-            //fs2.Changed += new FileSystemEventHandler(onChange);
-            //fs2.Created += new FileSystemEventHandler(onChange);
-            //fs2.Deleted += new FileSystemEventHandler(onChange);
-            //fs2.Renamed += new RenamedEventHandler(onChange);
-            //fs2.WaitForChanged(WatcherChangeTypes.All, 10000);
-            //fs2.EnableRaisingEvents = true;
 
         }
 
@@ -163,20 +149,11 @@ namespace FileWatcher
 
         private void onChange(object sender, FileSystemEventArgs e)
         {
-            //FileSystemWatcher f = sender as FileSystemWatcher;
-            //MessageBox.Show(f.Path);
-            //richTextBox1.Text += DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + " --File: " + e.FullPath + " " + e.ChangeType + "\n\r";
-
+            
             textOneLineLog = DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + " --File: " + e.FullPath + " " + e.ChangeType + "\n\r";
             richTextBox1.Invoke(new Action(() => richTextBox1.Text += textOneLineLog));
             richTextBox1.Invoke(new Action(() => richTextBox1.SaveFile(this.fullPath, RichTextBoxStreamType.PlainText)));
-            //richTextBox1.Text = textOneLineLog;
-            //richTextBox1.SaveFile(this.logFileName, RichTextBoxStreamType.PlainText);
-
-            //if (isDirectoryEmpty())
-            //{
-            //    setTimer();
-            //}
+            
         }
 
         private async void setTimer()
@@ -224,11 +201,13 @@ namespace FileWatcher
             this.pathInbox = textBox3.Text;
             this.pathLog = textBox4.Text;
             this.countCopy = Convert.ToInt32(textBox1.Text);
+            this.delayCopy = Convert.ToInt32(textBox5.Text);
 
             AddUpdateAppSettings("pathNewDocuments", this.pathNewDocuments);
             AddUpdateAppSettings("pathInbox", this.pathInbox);
             AddUpdateAppSettings("pathLog", this.pathLog);
             AddUpdateAppSettings("countCopy", Convert.ToString(this.countCopy));
+            AddUpdateAppSettings("delayCopy",Convert.ToString(this.delayCopy));
 
             this.fullPath = this.pathLog + "/" + this.logFileName;
             this.fullPathInbox = this.pathLog + "/" + this.logFileNameInbox;
