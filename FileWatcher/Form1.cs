@@ -20,8 +20,8 @@ namespace FileWatcher
         string pathLog = null;
         string logFileName = "NewDocuments-log-" + DateTime.Now.ToString("yyyyMMddTHHmmss") + ".txt";
         string logFileNameInbox = "Inbox-log-" + DateTime.Now.ToString("yyyyMMddTHHmmss") + ".txt";
-        int countCopy = 1;
-        int delayCopy = 300000;
+        int countCopy = 3;
+        int delayCopy = 1;
 
         bool taskOpen = false;
         System.Threading.Timer timer;
@@ -158,7 +158,7 @@ namespace FileWatcher
 
         private async void setTimer()
         {
-            await Task.Delay(this.delayCopy);
+            await Task.Delay(this.delayCopy*60*1000);
             fileMove();
             taskOpen = false;
         }
