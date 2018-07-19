@@ -33,6 +33,8 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -45,8 +47,6 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutFileWatcher100ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -105,6 +105,22 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Settings";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(4, 131);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(84, 13);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Delay in minutes";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(6, 147);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(434, 20);
+            this.textBox5.TabIndex = 11;
             // 
             // label5
             // 
@@ -204,24 +220,8 @@
             // 
             this.aboutFileWatcher100ToolStripMenuItem.Name = "aboutFileWatcher100ToolStripMenuItem";
             this.aboutFileWatcher100ToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
-            this.aboutFileWatcher100ToolStripMenuItem.Text = "About File Watcher 1.0.0";
+            this.aboutFileWatcher100ToolStripMenuItem.Text = "About File Watcher 1.1.0";
             this.aboutFileWatcher100ToolStripMenuItem.Click += new System.EventHandler(this.aboutFileWatcher100ToolStripMenuItem_Click);
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(6, 147);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(434, 20);
-            this.textBox5.TabIndex = 11;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(4, 131);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(84, 13);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Delay in minutes";
             // 
             // Form1
             // 

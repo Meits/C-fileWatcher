@@ -50,16 +50,16 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(253, 33);
             this.label1.TabIndex = 1;
-            this.label1.Text = "File Watcher 1.0.0";
+            this.label1.Text = "File Watcher 1.1.0";
             // 
-            // About
+            // AboutForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(461, 118);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
-            this.Name = "About";
+            this.Name = "AboutForm";
             this.Text = "About";
             this.ResumeLayout(false);
             this.PerformLayout();
